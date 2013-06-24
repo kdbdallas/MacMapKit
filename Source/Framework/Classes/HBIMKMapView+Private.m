@@ -33,15 +33,15 @@
 	[webView setCustomUserAgent:[NSString stringWithFormat:@"%@ AppleWebKit", applicationName]];
 	
     // Create the overlay data structures
-    overlays = [[NSMutableArray array] retain];
-    overlayViews = [[NSMapTable strongToStrongObjectsMapTable] retain];
-    overlayScriptObjects = [[NSMapTable strongToStrongObjectsMapTable] retain];
+    overlays = [NSMutableArray array];
+    overlayViews = [NSMapTable strongToStrongObjectsMapTable];
+    overlayScriptObjects = [NSMapTable strongToStrongObjectsMapTable];
     
     // Create the annotation data structures
-    annotations = [[NSMutableArray array] retain];
-    selectedAnnotations = [[NSMutableArray array] retain];
-    annotationViews = [[NSMapTable strongToStrongObjectsMapTable] retain];
-    annotationScriptObjects = [[NSMapTable strongToStrongObjectsMapTable] retain];
+    annotations = [NSMutableArray array];
+    selectedAnnotations = [NSMutableArray array];
+    annotationViews = [NSMapTable strongToStrongObjectsMapTable];
+    annotationScriptObjects = [NSMapTable strongToStrongObjectsMapTable];
     
     [self loadMapKitHtml];
     

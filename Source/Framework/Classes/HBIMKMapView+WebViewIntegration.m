@@ -359,7 +359,7 @@
 					pressure:1.0];
     
     // Create the menu and display it if it has anything.
-    NSMenu *menu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
     NSArray *items = [self delegateContextMenuItemsForAnnotationView:annotationView];
     if ([items count] > 0)
     {

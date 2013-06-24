@@ -15,7 +15,8 @@
 
 #import "HBIMKReverseGeocoder.h"
 #import "JSON.h"
-#import "HBIMKPlacemark+Private.h"
+#import "HBIMKPlacemark.h"
+//#import "HBIMKPlacemark+Private.h"
 
 
 @interface HBIMKReverseGeocoder (WebViewIntegration)
@@ -100,9 +101,7 @@
 
 - (void)dealloc
 {
-    [placemark release];
     [self destroyWebView];
-    [super dealloc];
 }
 
 
@@ -133,8 +132,8 @@
         return;
     
     id result = [jsonAddress JSONValue];
-    HBIMKPlacemark *aPlacemark = [[[HBIMKPlacemark alloc] initWithGoogleGeocoderResult: result] autorelease];
-    placemark = [aPlacemark retain];
+    HBIMKPlacemark *aPlacemark = [[HBIMKPlacemark alloc] initWithGoogleGeocoderResult: result];
+    placemark = aPlacemark;
     
     if (delegate && [delegate respondsToSelector:@selector(reverseGeocoder:didFindPlacemark:)])
     {
@@ -206,7 +205,6 @@
 - (void)destroyWebView
 {
     [webView close];
-    [webView release];
 }
 
 - (void)_start

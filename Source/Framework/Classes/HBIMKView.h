@@ -14,8 +14,8 @@
 }
 
 // TODO : might want to rename this one.
-@property (nonatomic, readonly) NSString *viewPrototypeName;
-@property (nonatomic, readonly) NSDictionary *options;
+@property (weak, nonatomic, readonly) NSString *viewPrototypeName;
+@property (weak, nonatomic, readonly) NSDictionary *options;
 
 
 - (void)draw:(WebScriptObject *)overlayScriptObject;

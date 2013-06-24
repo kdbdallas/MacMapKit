@@ -21,7 +21,7 @@
     [mapView setShowsUserLocation: YES];
     [mapView setDelegate: self];
     
-    pinNames = [[NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", @"Eight", @"Nine", @"Ten", @"Eleven", @"Twelve", nil] retain];
+    pinNames = [NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", @"Eight", @"Nine", @"Ten", @"Eleven", @"Twelve", nil];
 
     
     CLLocationCoordinate2D coordinate;
@@ -31,7 +31,7 @@
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
     
-    coreLocationPins = [[NSMutableArray array] retain];
+    coreLocationPins = [NSMutableArray array];
     
     HBIMKGeocoder *geocoderNoCoord = [[HBIMKGeocoder alloc] initWithAddress:@"777 Corydon Ave, Winnipeg MB"];
     geocoderNoCoord.delegate = self;
@@ -51,13 +51,13 @@
 
 - (IBAction)addCircle:(id)sender
 {
-    HBIMKCircle *circle = [[HBIMKCircle circleWithCenterCoordinate:[mapView centerCoordinate] radius:[circleRadius intValue]] autorelease];
+    HBIMKCircle *circle = [HBIMKCircle circleWithCenterCoordinate:[mapView centerCoordinate] radius:[circleRadius intValue]];
     [mapView addOverlay:circle];
 }
 
 - (IBAction)addPin:(id)sender
 {
-    HBIMKPointAnnotation *pin = [[[HBIMKPointAnnotation alloc] init] autorelease];
+    HBIMKPointAnnotation *pin = [[HBIMKPointAnnotation alloc] init];
     pin.coordinate = [mapView centerCoordinate];
     pin.title = self.pinTitle;
     
@@ -96,7 +96,7 @@
     double maxLngOffset = 0.02;
     NSString *name = [pinNames objectAtIndex:[indexNumber intValue]];
 
-    HBIMKPointAnnotation *pin = [[[HBIMKPointAnnotation alloc] init] autorelease];
+    HBIMKPointAnnotation *pin = [[HBIMKPointAnnotation alloc] init];
     CLLocationCoordinate2D pinCoord = centerCoordinate;
     double latOffset = maxLatOffset * cosf(2*M_PI * ((double)index/(double)total));
     double lngOffset = maxLngOffset * sinf(2*M_PI * ((double)index/(double)total));
@@ -196,7 +196,7 @@
 {
     //NSLog(@"mapView: %@ viewForAnnotation: %@", aMapView, annotation);
     //HBIMKAnnotationView *view = [[[HBIMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"] autorelease];
-    HBIMKPinAnnotationView *view = [[[HBIMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"] autorelease];
+    HBIMKPinAnnotationView *view = [[HBIMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"];
     view.draggable = YES;
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"MarkerTest" ofType:@"png"];
     //NSURL *url = [NSURL fileURLWithPath:path];
@@ -244,11 +244,11 @@
 - (HBIMKOverlayView *)mapView:(HBIMKMapView *)aMapView viewForOverlay:(id <HBIMKOverlay>)overlay
 {
     //NSLog(@"mapView: %@ viewForOverlay: %@", aMapView, overlay);
-    HBIMKCircleView *circleView = [[[HBIMKCircleView alloc] initWithCircle:overlay] autorelease];
+    HBIMKCircleView *circleView = [[HBIMKCircleView alloc] initWithCircle:overlay];
     return circleView;
     //    HBIMKPolylineView *polylineView = [[[HBIMKPolylineView alloc] initWithPolyline:overlay] autorelease];
     //    return polylineView;
-    HBIMKPolygonView *polygonView = [[[HBIMKPolygonView alloc] initWithPolygon:overlay] autorelease];
+    HBIMKPolygonView *polygonView = [[HBIMKPolygonView alloc] initWithPolygon:overlay];
     return polygonView;
 }
 
@@ -304,7 +304,7 @@
 - (void)mapView:(HBIMKMapView *)aMapView userDidClickAndHoldAtCoordinate:(CLLocationCoordinate2D)coordinate;
 {
     //NSLog(@"mapView: %@ userDidClickAndHoldAtCoordinate: (%f, %f)", aMapView, coordinate.latitude, coordinate.longitude);
-    HBIMKPointAnnotation *pin = [[[HBIMKPointAnnotation alloc] init] autorelease];
+    HBIMKPointAnnotation *pin = [[HBIMKPointAnnotation alloc] init];
     pin.coordinate = coordinate;
     pin.title = @"Hi.";
     [mapView addAnnotation:pin];
@@ -312,7 +312,7 @@
 
 - (NSArray *)mapView:(HBIMKMapView *)mapView contextMenuItemsForAnnotationView:(HBIMKAnnotationView *)view
 {
-    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"Delete It" action:@selector(delete:) keyEquivalent:@""] autorelease];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Delete It" action:@selector(delete:) keyEquivalent:@""];
     return [NSArray arrayWithObject:item];
 }
 

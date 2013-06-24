@@ -20,7 +20,7 @@
 @class HBIMKWebView;
 
 @interface HBIMKMapView : NSView <CLLocationManagerDelegate, NSCoding> {    
-    id <HBIMKMapViewDelegate> delegate;
+    id <HBIMKMapViewDelegate> __strong delegate;
     HBIMKMapType mapType;
     HBIMKUserLocation *userLocation;
     BOOL showsUserLocation;
@@ -41,7 +41,7 @@
 
     
 }
-@property (nonatomic, assign) id <HBIMKMapViewDelegate> delegate;
+@property (nonatomic, strong) id <HBIMKMapViewDelegate> delegate;
 
 @property(nonatomic) HBIMKMapType mapType;
 @property(nonatomic, readonly) HBIMKUserLocation *userLocation;
@@ -51,8 +51,8 @@
 @property(nonatomic, getter=isScrollEnabled) BOOL scrollEnabled;
 @property(nonatomic, getter=isZoomEnabled) BOOL zoomEnabled;
 @property(nonatomic, readonly, getter=isUserLocationVisible) BOOL userLocationVisible;
-@property(nonatomic, readonly) NSArray *overlays;
-@property(nonatomic, readonly) NSArray *annotations;
+@property(weak, nonatomic, readonly) NSArray *overlays;
+@property(weak, nonatomic, readonly) NSArray *annotations;
 @property(nonatomic, copy) NSArray *selectedAnnotations;
 
 

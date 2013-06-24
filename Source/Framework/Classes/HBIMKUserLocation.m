@@ -11,19 +11,26 @@
 
 @implementation HBIMKUserLocation
 
-@synthesize updating, location, title, subtitle;
+@synthesize updating, title, subtitle, location;
 
-- (void)dealloc
-{
-    [location release];
-    [title release];
-    [subtitle release];
-    [super dealloc];
-}
 
 - (CLLocationCoordinate2D) coordinate
 {
     return [location coordinate];
+}
+
+- (void)_setLocation:(CLLocation *)aLocation
+{
+    [self willChangeValueForKey:@"location"];
+    location = aLocation;
+    [self didChangeValueForKey:@"location"];
+}
+
+- (void)_setUpdating:(BOOL)value
+{
+    [self willChangeValueForKey:@"isUpdating"];
+    updating = value;
+    [self didChangeValueForKey:@"isUpdating"];
 }
 
 @end

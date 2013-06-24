@@ -7,6 +7,7 @@
 //
 
 #import "HBIMKMapView+Additions.h"
+#import "HBIMKWebView.h"
 #import <WebKit/WebKit.h>
 
 

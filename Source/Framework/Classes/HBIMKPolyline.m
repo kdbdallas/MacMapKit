@@ -19,7 +19,7 @@
 
 + (HBIMKPolyline *)polylineWithCoordinates:(CLLocationCoordinate2D *)coords count:(NSUInteger)count
 {
-    return [[[HBIMKPolyline alloc] initWithCoordinates:coords count:count] autorelease];
+    return [[HBIMKPolyline alloc] initWithCoordinates:coords count:count];
 }
 
 - (CLLocationCoordinate2D) coordinate
@@ -30,7 +30,6 @@
 - (void)dealloc
 {
     free(coordinates);
-    [super dealloc];
 }
 
 #pragma mark Private

@@ -12,7 +12,8 @@
 
 #import "HBIMKGeocoder.h"
 #import "JSON.h"
-#import "HBIMKPlacemark+Private.h"
+#import "HBIMKPlacemark.h"
+//#import "HBIMKPlacemark+Private.h"
 
 @interface HBIMKGeocoder (WebViewIntegration)
 
@@ -88,7 +89,7 @@
     if (self = [super init])
     {
         [self createWebView];
-        address = [anAddress retain];
+        address = anAddress;
         hasOriginatingCoordinate = NO;
     }
     return self;
@@ -99,7 +100,7 @@
     if (self = [super init])
     {
         [self createWebView];
-        address = [anAddress retain];
+        address = anAddress;
         hasOriginatingCoordinate = YES;
         originatingCoordinate = aCoordinate;
     }
@@ -109,9 +110,7 @@
 
 - (void)dealloc
 {
-    [address release];
     [self destroyWebView];
-    [super dealloc];
 }
 
 
@@ -142,7 +141,6 @@
     id result = [jsonEncodedGeocoderResult JSONValue];
     HBIMKPlacemark *aPlacemark = [[HBIMKPlacemark alloc] initWithGoogleGeocoderResult: result];
     coordinate = aPlacemark.coordinate;
-    [aPlacemark release];
     
     if (delegate && [delegate respondsToSelector:@selector(geocoder:didFindCoordinate:)])
     {
@@ -215,7 +213,6 @@
 - (void)destroyWebView
 {
     [webView close];
-    [webView release];
 }
 
 - (void)_start

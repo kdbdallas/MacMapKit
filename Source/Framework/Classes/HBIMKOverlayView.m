@@ -16,17 +16,12 @@
 {
     if (self = [super init])
     {
-        overlay = [anOverlay retain];
+        overlay = anOverlay;
     }
     return self;
 }
 
 
-- (void)dealloc
-{
-    [overlay release];
-    [super dealloc];
-}
 
 
 

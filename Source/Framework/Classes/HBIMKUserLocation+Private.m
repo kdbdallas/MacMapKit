@@ -14,8 +14,6 @@
 - (void)_setLocation:(CLLocation *)aLocation
 {
     [self willChangeValueForKey:@"location"];
-    [aLocation retain];
-    [location release];
     location = aLocation;
     [self didChangeValueForKey:@"location"];
 }

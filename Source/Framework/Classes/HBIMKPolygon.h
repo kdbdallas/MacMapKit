@@ -11,10 +11,10 @@
 #import <HBIMapKit/HBIMKOverlay.h>
 
 @interface HBIMKPolygon : HBIMKMultiPoint <HBIMKOverlay> {
-    NSArray *interiorPolygons;
+    
 }
 
-@property (readonly) NSArray *interiorPolygons;
+@property (weak, readonly) NSArray *interiorPolygons;
 
 + (HBIMKPolygon *)polygonWithCoordinates:(CLLocationCoordinate2D *)coords count:(NSUInteger)count;
 + (HBIMKPolygon *)polygonWithCoordinates:(CLLocationCoordinate2D *)coords count:(NSUInteger)count interiorPolygons:(NSArray *)interiorPolygons;

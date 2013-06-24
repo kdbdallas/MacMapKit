@@ -30,20 +30,12 @@
 {
     if (self = [super init])
     {
-        reuseIdentifier = [aReuseIdentifier retain];
+        reuseIdentifier = aReuseIdentifier;
         self.annotation = anAnnotation;
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [reuseIdentifier release];
-    [(id)annotation release];
-    [markerImage release];
-    [latlngCenter release];
-    [super dealloc];
-}
 
 - (void)prepareForReuse
 {
@@ -76,16 +68,14 @@
     [options setObject:[NSNumber numberWithBool:draggable] forKey:@"draggable"];
     //NSLog(@"options = %@", options);
     
-    return [[options copy] autorelease];
+    return [options copy];
 }
 
 - (void)draw:(WebScriptObject *)overlayScriptObject
 {
  
-    [latlngCenter release];
     NSString *script = [NSString stringWithFormat:@"new google.maps.LatLng(%f, %f);", self.annotation.coordinate.latitude, self.annotation.coordinate.longitude];
     latlngCenter = (WebScriptObject *)[overlayScriptObject evaluateWebScript:script];
-    [latlngCenter retain];
     
     [super draw:overlayScriptObject];
 }

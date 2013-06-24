@@ -13,17 +13,11 @@
 
 @synthesize lastHitTestDate;
 
-- (void)dealloc
-{
-    [lastHitTestDate release];
-    [super dealloc];
-}
 
 - (NSView *)hitTest:(NSPoint)aPoint
 {
     //NSLog(@"hitTest: %@", NSStringFromPoint(aPoint));
-    [lastHitTestDate release];
-    lastHitTestDate = [[NSDate date] retain];
+    lastHitTestDate = [NSDate date];
     return [super hitTest:aPoint];
 }
 

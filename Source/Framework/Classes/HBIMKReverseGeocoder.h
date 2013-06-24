@@ -15,9 +15,8 @@
 @protocol HBIMKReverseGeocoderDelegate;
 
 @interface HBIMKReverseGeocoder : NSObject {
-    id <HBIMKReverseGeocoderDelegate> delegate;
+    id <HBIMKReverseGeocoderDelegate> __strong delegate;
     CLLocationCoordinate2D coordinate;
-    HBIMKPlacemark *placemark;
     BOOL querying;
 @private
     WebView *webView;
@@ -31,9 +30,9 @@
 - (void)start;
 - (void)cancel;
 
-@property (nonatomic, assign) id<HBIMKReverseGeocoderDelegate> delegate;
+@property (nonatomic, strong) id<HBIMKReverseGeocoderDelegate> delegate;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;      // the exact coordinate being reverse geocoded.
-@property (nonatomic, readonly) HBIMKPlacemark *placemark;
+@property (weak, nonatomic, readonly) HBIMKPlacemark *placemark;
 @property (nonatomic, readonly, getter=isQuerying) BOOL querying;
 
 @end

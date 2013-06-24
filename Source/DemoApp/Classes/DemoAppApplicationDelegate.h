@@ -12,7 +12,7 @@
 @class HBIMKMapView;
 
 @interface DemoAppApplicationDelegate : NSObject <NSApplicationDelegate, HBIMKMapViewDelegate, HBIMKReverseGeocoderDelegate, HBIMKGeocoderDelegate> {
-    NSWindow *window;
+    NSWindow *__strong window;
     IBOutlet HBIMKMapView *mapView;
     IBOutlet NSTextField *addressTextField;
     NSNumber *circleRadius;
@@ -22,8 +22,8 @@
     NSMutableArray *coreLocationPins;
 }
 
-@property (assign) IBOutlet NSWindow *window;
-@property (retain) NSString *pinTitle;
+@property (strong) IBOutlet NSWindow *window;
+@property (strong) NSString *pinTitle;
 
 - (IBAction)setMapType:(id)sender;
 - (IBAction)addCircle:(id)sender;

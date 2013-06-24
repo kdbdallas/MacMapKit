@@ -14,8 +14,7 @@
 @protocol HBIMKGeocoderDelegate;
 
 @interface HBIMKGeocoder : NSObject {
-    id <HBIMKGeocoderDelegate> delegate;
-    NSString *address;
+    id <HBIMKGeocoderDelegate> __strong delegate;
     BOOL hasOriginatingCoordinate;
     CLLocationCoordinate2D originatingCoordinate;
     CLLocationCoordinate2D coordinate;
@@ -33,8 +32,8 @@
 - (void)start;
 - (void)cancel;
 
-@property (nonatomic, assign) id<HBIMKGeocoderDelegate> delegate;
-@property (nonatomic, readonly) NSString *address;
+@property (nonatomic, strong) id<HBIMKGeocoderDelegate> delegate;
+@property (weak, nonatomic, readonly) NSString *address;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;      // the resulting geocoded coordinate.
 @property (nonatomic, readonly, getter=isQuerying) BOOL querying;
 

@@ -20,11 +20,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [path release];
-    [super dealloc];
-}
 
 - (HBIMKPolyline *)polyline
 {
@@ -43,7 +38,7 @@
     if (path)
         [options setObject:path forKey:@"path"];
     
-    return [[options copy] autorelease];
+    return [options copy];
 }
 
 - (void)draw:(WebScriptObject *)overlayScriptObject
@@ -62,7 +57,7 @@
             WebScriptObject *latlng = (WebScriptObject *)[overlayScriptObject evaluateWebScript:script];
             [newPath addObject:latlng];
         }
-        path = [[[newPath copy] autorelease] retain];
+        path = [newPath copy];
     }
     
     [super draw:overlayScriptObject];

@@ -27,11 +27,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [path release];
-    [super dealloc];
-}
 
 - (HBIMKPolygon *)polygon
 {
@@ -61,7 +56,7 @@
 
     }
     
-    return [[options copy] autorelease];
+    return [options copy];
 }
 
 - (void)draw:(WebScriptObject *)overlayScriptObject
@@ -69,7 +64,6 @@
     if (!path)
     {
         path = [self pathForPolygon:[self polygon] webScriptObject:overlayScriptObject];
-        [path retain];
         if ([self polygon].interiorPolygons)
         {
             NSMutableArray *interiorPolygonPaths = [NSMutableArray array];
@@ -78,7 +72,7 @@
                 NSArray *interiorPath = [self pathForPolygon:aPolygon webScriptObject:overlayScriptObject];
                 [interiorPolygonPaths addObject:interiorPath];
             }
-            interiorPaths = [[[interiorPolygonPaths copy] autorelease] retain];
+            interiorPaths = [interiorPolygonPaths copy];
         }
     }
     
@@ -101,7 +95,7 @@
         WebScriptObject *latlng = (WebScriptObject *)[webScriptObject evaluateWebScript:script];
         [newPath addObject:latlng];
     }
-    return  [[newPath copy] autorelease];
+    return  [newPath copy];
 }
 
 @end

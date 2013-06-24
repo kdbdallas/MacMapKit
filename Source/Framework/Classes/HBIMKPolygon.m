@@ -21,12 +21,12 @@
 
 + (HBIMKPolygon *)polygonWithCoordinates:(CLLocationCoordinate2D *)coords count:(NSUInteger)count
 {
-    return [[[self alloc] initWithCoordinates:coords count:count] autorelease];
+    return [[self alloc] initWithCoordinates:coords count:count];
 }
 
 + (HBIMKPolygon *)polygonWithCoordinates:(CLLocationCoordinate2D *)coords count:(NSUInteger)count interiorPolygons:(NSArray *)interiorPolygons;
 {
-    return [[[self alloc] initWithCoordinates:coords count:count interiorPolygons:interiorPolygons] autorelease];
+    return [[self alloc] initWithCoordinates:coords count:count interiorPolygons:interiorPolygons];
 }
 
 - (CLLocationCoordinate2D) coordinate
@@ -37,8 +37,6 @@
 - (void)dealloc
 {
     free(coordinates);
-    [interiorPolygons release];
-    [super dealloc];
 }
 
 #pragma mark Private
@@ -61,7 +59,7 @@
 {
     if (self = [self initWithCoordinates:coords count:count])
     {
-        interiorPolygons = [theInteriorPolygons retain];
+        interiorPolygons = theInteriorPolygons;
     }
     return self;
 }

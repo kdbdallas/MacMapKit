@@ -11,10 +11,10 @@
 #import <HBIMapKit/HBIMKView.h>
 
 @interface HBIMKOverlayView : HBIMKView {
-    id <HBIMKOverlay> overlay;
+    id <HBIMKOverlay> __unsafe_unretained overlay;
 }
 
-@property (nonatomic, readonly) id <HBIMKOverlay> overlay;
+@property (unsafe_unretained, nonatomic, readonly) id <HBIMKOverlay> overlay;
 
 
 - (id)initWithOverlay:(id <HBIMKOverlay>)anOverlay;

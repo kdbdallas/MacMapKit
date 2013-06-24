@@ -53,7 +53,6 @@
 		5FB7413411FB52AF00AB2079 /* HBIMKReverseGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FB7413211FB52AF00AB2079 /* HBIMKReverseGeocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FB7413511FB52AF00AB2079 /* HBIMKReverseGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB7413311FB52AF00AB2079 /* HBIMKReverseGeocoder.m */; };
 		5FB7417311FD53B500AB2079 /* HBIMKPlacemark+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FB7417111FD53B500AB2079 /* HBIMKPlacemark+Private.h */; };
-		5FB7417411FD53B500AB2079 /* HBIMKPlacemark+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB7417211FD53B500AB2079 /* HBIMKPlacemark+Private.m */; };
 		5FB7436711FE6F0500AB2079 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6EF13B11F13B170077E84F /* Cocoa.framework */; };
 		5FB7436811FE6F1300AB2079 /* HBIMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6EF17D11F13F690077E84F /* HBIMapKit.framework */; };
 		5FB7437211FE6F4C00AB2079 /* InterfaceBuilderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB7437111FE6F4C00AB2079 /* InterfaceBuilderKit.framework */; };
@@ -85,7 +84,6 @@
 		5FBAF7D411F1486D004753A9 /* HBIMKUserLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FBAF7CA11F1486D004753A9 /* HBIMKUserLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FBAF7D511F1486D004753A9 /* HBIMKUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAF7CB11F1486D004753A9 /* HBIMKUserLocation.m */; };
 		5FBAF7D611F1486D004753A9 /* HBIMKUserLocation+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FBAF7CC11F1486D004753A9 /* HBIMKUserLocation+Private.h */; settings = {ATTRIBUTES = (); }; };
-		5FBAF7D711F1486D004753A9 /* HBIMKUserLocation+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAF7CD11F1486D004753A9 /* HBIMKUserLocation+Private.m */; };
 		5FBAF7D811F1486D004753A9 /* HBIMKAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FBAF7CE11F1486D004753A9 /* HBIMKAnnotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FBAF7E511F14889004753A9 /* HBIMKShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FBAF7DA11F14889004753A9 /* HBIMKShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FBAF7E611F14889004753A9 /* HBIMKShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAF7DB11F14889004753A9 /* HBIMKShape.m */; };
@@ -738,7 +736,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "HBIMapKit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -826,7 +824,6 @@
 				5FBAF7C411F1482E004753A9 /* SBJsonWriter.m in Sources */,
 				5FBAF7D011F1486D004753A9 /* HBIMKMapView.m in Sources */,
 				5FBAF7D511F1486D004753A9 /* HBIMKUserLocation.m in Sources */,
-				5FBAF7D711F1486D004753A9 /* HBIMKUserLocation+Private.m in Sources */,
 				5FBAF7E611F14889004753A9 /* HBIMKShape.m in Sources */,
 				5FBAF7E811F14889004753A9 /* HBIMKCircle.m in Sources */,
 				5FBAF7EB11F14889004753A9 /* HBIMKMultiPoint.m in Sources */,
@@ -846,7 +843,6 @@
 				5FB7410011FB4BD200AB2079 /* HBIMKMapView+Additions.m in Sources */,
 				5FB7411C11FB50B800AB2079 /* HBIMKPlacemark.m in Sources */,
 				5FB7413511FB52AF00AB2079 /* HBIMKReverseGeocoder.m in Sources */,
-				5FB7417411FD53B500AB2079 /* HBIMKPlacemark+Private.m in Sources */,
 				5F39D6FF12B5AB50001B32CD /* HBIMKWebView.m in Sources */,
 				5F9CE3DB12D15F98006354EF /* HBIMKGeocoder.m in Sources */,
 				5F96B22613BAB9F4000A1E4A /* HBIMKMapView+Private.m in Sources */,
@@ -907,16 +903,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = DemoApp/DemoApp_Prefix.pch;
 				INFOPLIST_FILE = "DemoApp/DemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -931,15 +930,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = DemoApp/DemoApp_Prefix.pch;
 				INFOPLIST_FILE = "DemoApp/DemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -955,6 +957,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -965,7 +970,7 @@
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -986,6 +991,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -996,7 +1004,7 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1017,6 +1025,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1046,6 +1055,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -12,16 +12,6 @@
 
 @interface HBIMKPlacemark : NSObject <HBIMKAnnotation> {
     CLLocationCoordinate2D coordinate;
-    NSDictionary *addressDictionary;
-    NSString *thoroughfare;
-    NSString *subThoroughfare;
-    NSString *locality;
-    NSString *subLocality;
-    NSString *administrativeArea;
-    NSString *subAdministrativeArea;
-    NSString *postalCode;
-    NSString *country;
-    NSString *countryCode;
 }
 
 // An address dictionary is a dictionary in the same form as returned by 
@@ -32,16 +22,18 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 // Can be turned into a formatted address with ABCreateStringWithAddressDictionary.
-@property (nonatomic, readonly) NSDictionary *addressDictionary;
+@property (weak, nonatomic, readonly) NSDictionary *addressDictionary;
 
-@property (nonatomic, readonly) NSString *thoroughfare; // street address, eg 1 Infinite Loop
-@property (nonatomic, readonly) NSString *subThoroughfare;
-@property (nonatomic, readonly) NSString *locality; // city, eg. Cupertino
-@property (nonatomic, readonly) NSString *subLocality; // neighborhood, landmark, common name, etc
-@property (nonatomic, readonly) NSString *administrativeArea; // state, eg. CA
-@property (nonatomic, readonly) NSString *subAdministrativeArea; // county, eg. Santa Clara
-@property (nonatomic, readonly) NSString *postalCode; // zip code, eg 95014
-@property (nonatomic, readonly) NSString *country; // eg. United States
-@property (nonatomic, readonly) NSString *countryCode; // eg. US
+@property (weak, nonatomic, readonly) NSString *thoroughfare; // street address, eg 1 Infinite Loop
+@property (weak, nonatomic, readonly) NSString *subThoroughfare;
+@property (weak, nonatomic, readonly) NSString *locality; // city, eg. Cupertino
+@property (weak, nonatomic, readonly) NSString *subLocality; // neighborhood, landmark, common name, etc
+@property (weak, nonatomic, readonly) NSString *administrativeArea; // state, eg. CA
+@property (weak, nonatomic, readonly) NSString *subAdministrativeArea; // county, eg. Santa Clara
+@property (weak, nonatomic, readonly) NSString *postalCode; // zip code, eg 95014
+@property (weak, nonatomic, readonly) NSString *country; // eg. United States
+@property (weak, nonatomic, readonly) NSString *countryCode; // eg. US
+
+-(id)initWithGoogleGeocoderResult:(NSDictionary *)result;
 
 @end

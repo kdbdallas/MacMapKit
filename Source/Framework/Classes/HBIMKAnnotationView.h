@@ -24,7 +24,6 @@ typedef NSUInteger HBIMKAnnotationViewDragState;
 
 
 @interface HBIMKAnnotationView : HBIMKView {
-    NSString *reuseIdentifier;
     id <HBIMKAnnotation> annotation;
     NSString *imageUrl;
     CGPoint centerOffset;
@@ -42,11 +41,11 @@ typedef NSUInteger HBIMKAnnotationViewDragState;
 
 - (id)initWithAnnotation:(id <HBIMKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier;
 
-@property (nonatomic, readonly) NSString *reuseIdentifier;
+@property (weak, nonatomic, readonly) NSString *reuseIdentifier;
 // Classes that override must call super.
 - (void)prepareForReuse;
 
-@property (nonatomic, retain) id <HBIMKAnnotation> annotation;
+@property (nonatomic, strong) id <HBIMKAnnotation> annotation;
 
 @property (nonatomic, copy) NSString *imageUrl;
 

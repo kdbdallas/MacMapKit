@@ -21,11 +21,5 @@
     return coord;
 }
 
-- (void)dealloc
-{
-    [title release];
-    [subtitle release];
-    [super dealloc];
-}
 
 @end

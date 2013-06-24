@@ -13,7 +13,6 @@
 
 @interface HBIMKUserLocation : NSObject <HBIMKAnnotation> {
     BOOL updating;
-    CLLocation *location;
     NSString *title;
     NSString *subtitle;
 }
@@ -22,13 +21,15 @@
 @property (readonly, nonatomic, getter=isUpdating) BOOL updating;
 
 // Returns nil if the owning MKMapView's showsUserLocation is NO or the user's location has yet to be determined.
-@property (readonly, nonatomic) CLLocation *location;
+@property (weak, readonly, nonatomic) CLLocation *location;
 
 // The title to be displayed for the user location annotation.
-@property (retain, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *title;
 
 // The subtitle to be displayed for the user location annotation.
-@property (retain, nonatomic) NSString *subtitle;
+@property (strong, nonatomic) NSString *subtitle;
 
+- (void)_setLocation:(CLLocation *)aLocation;
+- (void)_setUpdating:(BOOL)value;
 
 @end

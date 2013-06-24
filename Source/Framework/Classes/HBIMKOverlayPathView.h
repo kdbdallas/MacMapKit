@@ -15,8 +15,8 @@
     CGFloat lineWidth;
 }
 
-@property (nonatomic, retain) NSColor *fillColor;
-@property (nonatomic, retain) NSColor *strokeColor;
+@property (nonatomic, strong) NSColor *fillColor;
+@property (nonatomic, strong) NSColor *strokeColor;
 @property (nonatomic, assign) CGFloat lineWidth;
 
 @end

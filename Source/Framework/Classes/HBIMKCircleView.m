@@ -20,11 +20,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [latlngCenter release];
-    [super dealloc];
-}
 
 - (HBIMKCircle *)circle
 {
@@ -46,15 +41,13 @@
     if (latlngCenter)
         [options setObject:latlngCenter forKey:@"center"];
     
-    return [[options copy] autorelease];
+    return [options copy];
 }
 
 - (void)draw:(WebScriptObject *)overlayScriptObject
 {
-    [latlngCenter release];
     NSString *script = [NSString stringWithFormat:@"new google.maps.LatLng(%f, %f);", self.circle.coordinate.latitude, self.circle.coordinate.longitude];
     latlngCenter = (WebScriptObject *)[overlayScriptObject evaluateWebScript:script];
-    [latlngCenter retain];
     [super draw:overlayScriptObject];
 }
 

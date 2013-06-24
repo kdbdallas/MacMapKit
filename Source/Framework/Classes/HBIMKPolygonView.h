@@ -17,7 +17,7 @@
 
 - (id)initWithPolygon:(HBIMKPolygon *)polygon;
 
-@property (nonatomic, readonly) HBIMKPolygon *polygon;
+@property (weak, nonatomic, readonly) HBIMKPolygon *polygon;
 
 @end
 

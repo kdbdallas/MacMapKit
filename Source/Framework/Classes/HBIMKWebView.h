@@ -11,9 +11,9 @@
 
 @interface HBIMKWebView : WebView
 {
-    NSDate *lastHitTestDate;
+    NSDate *__weak lastHitTestDate;
 }
 
-@property (nonatomic, readonly) NSDate *lastHitTestDate;
+@property (weak, nonatomic, readonly) NSDate *lastHitTestDate;
 
 @end

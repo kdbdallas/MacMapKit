@@ -34,30 +34,29 @@
                 {
                     if ([type isEqualToString:@"street_number"])
                     {
-                        thoroughfare = [longValue retain];
+                        thoroughfare = longValue;
                     }
                     if ([type isEqualToString:@"route"])
                     {
                         NSString *newThoroughfare = [thoroughfare stringByAppendingFormat:@" %@", longValue];
-                        [thoroughfare release];
-                        thoroughfare = [newThoroughfare retain];
+                        thoroughfare = newThoroughfare;
                     }
                     if ([type isEqualToString:@"locality"])
                     {
-                        locality = [longValue retain];
+                        locality = longValue;
                     }
                     if ([type isEqualToString:@"administrative_area_level_2"])
                     {
-                        subAdministrativeArea = [longValue retain];
+                        subAdministrativeArea = longValue;
                     }
                     if ([type isEqualToString:@"administrative_area_level_1"])
                     {
-                        administrativeArea = [shortValue retain];
+                        administrativeArea = shortValue;
                     }
                     if ([type isEqualToString:@"country"])
                     {
-                        country = [longValue retain];
-                        countryCode = [shortValue retain];
+                        country = longValue;
+                        countryCode = shortValue;
                     }
                 }
             }

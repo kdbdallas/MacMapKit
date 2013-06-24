@@ -24,12 +24,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [fillColor release];
-    [strokeColor release];
-    [super dealloc];
-}
 
 - (NSDictionary *)options
 {
@@ -50,7 +44,7 @@
 
     }
     
-    return [[options copy] autorelease];
+    return [options copy];
 }
 
 @end

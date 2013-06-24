@@ -16,7 +16,7 @@
 
 - (id)initWithPolyline:(HBIMKPolyline *)polyline;
 
-@property (nonatomic, readonly) HBIMKPolyline *polyline;
+@property (weak, nonatomic, readonly) HBIMKPolyline *polyline;
 
 @end
 
