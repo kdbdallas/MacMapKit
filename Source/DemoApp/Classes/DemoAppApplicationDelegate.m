@@ -8,7 +8,7 @@
 
 #import "DemoAppApplicationDelegate.h"
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
+#import <HBIMapKit/HBIMapKit.h>
 
 @implementation DemoAppApplicationDelegate
 
@@ -27,17 +27,17 @@
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = 49.8578255;
     coordinate.longitude = -97.16531639999999;
-    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate: coordinate];
+    HBIMKReverseGeocoder *reverseGeocoder = [[HBIMKReverseGeocoder alloc] initWithCoordinate: coordinate];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
     
     coreLocationPins = [[NSMutableArray array] retain];
     
-    MKGeocoder *geocoderNoCoord = [[MKGeocoder alloc] initWithAddress:@"777 Corydon Ave, Winnipeg MB"];
+    HBIMKGeocoder *geocoderNoCoord = [[HBIMKGeocoder alloc] initWithAddress:@"777 Corydon Ave, Winnipeg MB"];
     geocoderNoCoord.delegate = self;
     [geocoderNoCoord start];
     
-    MKGeocoder *geocoderCoord = [[MKGeocoder alloc] initWithAddress:@"1250 St. James St" nearCoordinate:coordinate];
+    HBIMKGeocoder *geocoderCoord = [[HBIMKGeocoder alloc] initWithAddress:@"1250 St. James St" nearCoordinate:coordinate];
     geocoderCoord.delegate = self;
     [geocoderCoord start];
     
@@ -51,17 +51,17 @@
 
 - (IBAction)addCircle:(id)sender
 {
-    MKCircle *circle = [[MKCircle circleWithCenterCoordinate:[mapView centerCoordinate] radius:[circleRadius intValue]] autorelease];
+    HBIMKCircle *circle = [[HBIMKCircle circleWithCenterCoordinate:[mapView centerCoordinate] radius:[circleRadius intValue]] autorelease];
     [mapView addOverlay:circle];
 }
 
 - (IBAction)addPin:(id)sender
 {
-    MKPointAnnotation *pin = [[[MKPointAnnotation alloc] init] autorelease];
+    HBIMKPointAnnotation *pin = [[[HBIMKPointAnnotation alloc] init] autorelease];
     pin.coordinate = [mapView centerCoordinate];
     pin.title = self.pinTitle;
     
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:[mapView centerCoordinate] radius:300];
+    HBIMKCircle *circle = [HBIMKCircle circleWithCenterCoordinate:[mapView centerCoordinate] radius:300];
     
     NSMutableDictionary *coreLocationPin = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                             pin, @"pin",
@@ -96,7 +96,7 @@
     double maxLngOffset = 0.02;
     NSString *name = [pinNames objectAtIndex:[indexNumber intValue]];
 
-    MKPointAnnotation *pin = [[[MKPointAnnotation alloc] init] autorelease];
+    HBIMKPointAnnotation *pin = [[[HBIMKPointAnnotation alloc] init] autorelease];
     CLLocationCoordinate2D pinCoord = centerCoordinate;
     double latOffset = maxLatOffset * cosf(2*M_PI * ((double)index/(double)total));
     double lngOffset = maxLngOffset * sinf(2*M_PI * ((double)index/(double)total));
@@ -114,77 +114,77 @@
     [mapView performSelector:@selector(addStylesheetTag:) withObject:path afterDelay:1.0];
 }
 
-#pragma mark MKReverseGeocoderDelegate
+#pragma mark HBIMKReverseGeocoderDelegate
 
-- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+- (void)reverseGeocoder:(HBIMKReverseGeocoder *)geocoder didFindPlacemark:(HBIMKPlacemark *)placemark
 {
     //NSLog(@"found placemark: %@", placemark);
 }
 
-- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+- (void)reverseGeocoder:(HBIMKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
-    //NSLog(@"MKReverseGeocoder didFailWithError: %@", error);
+    //NSLog(@"HBIMKReverseGeocoder didFailWithError: %@", error);
 }
 
-#pragma mark MKGeocoderDelegate
+#pragma mark HBIMKGeocoderDelegate
 
-- (void)geocoder:(MKGeocoder *)geocoder didFindCoordinate:(CLLocationCoordinate2D)coordinate
+- (void)geocoder:(HBIMKGeocoder *)geocoder didFindCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    //NSLog(@"MKGeocoder found (%f, %f) for %@", coordinate.latitude, coordinate.longitude, geocoder.address);
+    //NSLog(@"HBIMKGeocoder found (%f, %f) for %@", coordinate.latitude, coordinate.longitude, geocoder.address);
 }
 
-- (void)geocoder:(MKGeocoder *)geocoder didFailWithError:(NSError *)error
+- (void)geocoder:(HBIMKGeocoder *)geocoder didFailWithError:(NSError *)error
 {
-    //NSLog(@"MKGeocoder didFailWithError: %@", error);
+    //NSLog(@"HBIMKGeocoder didFailWithError: %@", error);
 }
 
 #pragma mark MapView Delegate
 
 // Responding to Map Position Changes
 
-- (void)mapView:(MKMapView *)aMapView regionWillChangeAnimated:(BOOL)animated
+- (void)mapView:(HBIMKMapView *)aMapView regionWillChangeAnimated:(BOOL)animated
 {
     //NSLog(@"mapView: %@ regionWillChangeAnimated: %d", aMapView, animated);
 }
 
-- (void)mapView:(MKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
+- (void)mapView:(HBIMKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
 {
     //NSLog(@"mapView: %@ regionDidChangeAnimated: %d", aMapView, animated);
 }
 
 //Loading the Map Data
-- (void)mapViewWillStartLoadingMap:(MKMapView *)aMapView
+- (void)mapViewWillStartLoadingMap:(HBIMKMapView *)aMapView
 {
     //NSLog(@"mapViewWillStartLoadingMap: %@", aMapView);
 }
 
-- (void)mapViewDidFinishLoadingMap:(MKMapView *)aMapView
+- (void)mapViewDidFinishLoadingMap:(HBIMKMapView *)aMapView
 {
     //NSLog(@"mapViewDidFinishLoadingMap: %@", aMapView);
 }
 
-- (void)mapViewDidFailLoadingMap:(MKMapView *)aMapView withError:(NSError *)error
+- (void)mapViewDidFailLoadingMap:(HBIMKMapView *)aMapView withError:(NSError *)error
 {
     //NSLog(@"mapViewDidFailLoadingMap: %@ withError: %@", aMapView, error);
 }
 
 // Tracking the User Location
-- (void)mapViewWillStartLocatingUser:(MKMapView *)aMapView
+- (void)mapViewWillStartLocatingUser:(HBIMKMapView *)aMapView
 {
     //NSLog(@"mapViewWillStartLocatingUser: %@", aMapView);
 }
 
-- (void)mapViewDidStopLocatingUser:(MKMapView *)aMapView
+- (void)mapViewDidStopLocatingUser:(HBIMKMapView *)aMapView
 {
     //NSLog(@"mapViewDidStopLocatingUser: %@", aMapView);
 }
 
-- (void)mapView:(MKMapView *)aMapView didUpdateUserLocation:(MKUserLocation *)userLocation
+- (void)mapView:(HBIMKMapView *)aMapView didUpdateUserLocation:(HBIMKUserLocation *)userLocation
 {
     //NSLog(@"mapView: %@ didUpdateUserLocation: %@", aMapView, userLocation); 
 }
 
-- (void)mapView:(MKMapView *)aMapView didFailToLocateUserWithError:(NSError *)error
+- (void)mapView:(HBIMKMapView *)aMapView didFailToLocateUserWithError:(NSError *)error
 {
     // NSLog(@"mapView: %@ didFailToLocateUserWithError: %@", aMapView, error);
 }
@@ -192,11 +192,11 @@
 // Managing Annotation Views
 
 
-- (MKAnnotationView *)mapView:(MKMapView *)aMapView viewForAnnotation:(id <MKAnnotation>)annotation
+- (HBIMKAnnotationView *)mapView:(HBIMKMapView *)aMapView viewForAnnotation:(id <HBIMKAnnotation>)annotation
 {
     //NSLog(@"mapView: %@ viewForAnnotation: %@", aMapView, annotation);
-    //MKAnnotationView *view = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"] autorelease];
-    MKPinAnnotationView *view = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"] autorelease];
+    //HBIMKAnnotationView *view = [[[HBIMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"] autorelease];
+    HBIMKPinAnnotationView *view = [[[HBIMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blah"] autorelease];
     view.draggable = YES;
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"MarkerTest" ofType:@"png"];
     //NSURL *url = [NSURL fileURLWithPath:path];
@@ -204,12 +204,12 @@
     return view;
 }
  
-- (void)mapView:(MKMapView *)aMapView didAddAnnotationViews:(NSArray *)views
+- (void)mapView:(HBIMKMapView *)aMapView didAddAnnotationViews:(NSArray *)views
 {
     //NSLog(@"mapView: %@ didAddAnnotationViews: %@", aMapView, views);
 }
  /*
- - (void)mapView:(MKMapView *)aMapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+ - (void)mapView:(MKMapView *)aMapView annotationView:(HBIMKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
  {
  NSLog(@"mapView: %@ annotationView: %@ calloutAccessoryControlTapped: %@", aMapView, view, control);
  }
@@ -217,9 +217,9 @@
 
 // Dragging an Annotation View
 /*
- - (void)mapView:(MKMapView *)aMapView annotationView:(MKAnnotationView *)annotationView 
- didChangeDragState:(MKAnnotationViewDragState)newState 
- fromOldState:(MKAnnotationViewDragState)oldState
+ - (void)mapView:(HBIMKMapView *)aMapView annotationView:(HBIMKAnnotationView *)annotationView 
+ didChangeDragState:(HBIMKAnnotationViewDragState)newState 
+ fromOldState:(HBIMKAnnotationViewDragState)oldState
  {
  NSLog(@"mapView: %@ annotationView: %@ didChangeDragState: %d fromOldState: %d", aMapView, annotationView, newState, oldState);
  }
@@ -228,12 +228,12 @@
 
 // Selecting Annotation Views
 
-- (void)mapView:(MKMapView *)aMapView didSelectAnnotationView:(MKAnnotationView *)view
+- (void)mapView:(HBIMKMapView *)aMapView didSelectAnnotationView:(HBIMKAnnotationView *)view
 {
     //NSLog(@"mapView: %@ didSelectAnnotationView: %@", aMapView, view);
 }
 
-- (void)mapView:(MKMapView *)aMapView didDeselectAnnotationView:(MKAnnotationView *)view
+- (void)mapView:(HBIMKMapView *)aMapView didDeselectAnnotationView:(HBIMKAnnotationView *)view
 {
     //NSLog(@"mapView: %@ didDeselectAnnotationView: %@", aMapView, view);
 }
@@ -241,40 +241,40 @@
 
 // Managing Overlay Views
 
-- (MKOverlayView *)mapView:(MKMapView *)aMapView viewForOverlay:(id <MKOverlay>)overlay
+- (HBIMKOverlayView *)mapView:(HBIMKMapView *)aMapView viewForOverlay:(id <HBIMKOverlay>)overlay
 {
     //NSLog(@"mapView: %@ viewForOverlay: %@", aMapView, overlay);
-    MKCircleView *circleView = [[[MKCircleView alloc] initWithCircle:overlay] autorelease];
+    HBIMKCircleView *circleView = [[[HBIMKCircleView alloc] initWithCircle:overlay] autorelease];
     return circleView;
-    //    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
+    //    HBIMKPolylineView *polylineView = [[[HBIMKPolylineView alloc] initWithPolyline:overlay] autorelease];
     //    return polylineView;
-    MKPolygonView *polygonView = [[[MKPolygonView alloc] initWithPolygon:overlay] autorelease];
+    HBIMKPolygonView *polygonView = [[[HBIMKPolygonView alloc] initWithPolygon:overlay] autorelease];
     return polygonView;
 }
 
-- (void)mapView:(MKMapView *)aMapView didAddOverlayViews:(NSArray *)overlayViews
+- (void)mapView:(HBIMKMapView *)aMapView didAddOverlayViews:(NSArray *)overlayViews
 {
     //NSLog(@"mapView: %@ didAddOverlayViews: %@", aMapView, overlayViews);
 }
 
-- (void)mapView:(MKMapView *)aMapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+- (void)mapView:(HBIMKMapView *)aMapView annotationView:(HBIMKAnnotationView *)annotationView didChangeDragState:(HBIMKAnnotationViewDragState)newState fromOldState:(HBIMKAnnotationViewDragState)oldState
 {
     //NSLog(@"mapView: %@ annotationView: %@ didChangeDragState:%d fromOldState:%d", aMapView, annotationView, newState, oldState);
     
-    if (newState ==  MKAnnotationViewDragStateEnding || newState == MKAnnotationViewDragStateNone)
+    if (newState ==  HBIMKAnnotationViewDragStateEnding || newState == HBIMKAnnotationViewDragStateNone)
     {
         // create a new circle view
-        MKPointAnnotation *pinAnnotation = annotationView.annotation;
+        HBIMKPointAnnotation *pinAnnotation = annotationView.annotation;
         for (NSMutableDictionary *pin in coreLocationPins)
         {
             if ([[pin objectForKey:@"pin"] isEqual: pinAnnotation])
             {
                 // found the pin.
-                MKCircle *circle = [pin objectForKey:@"circle"];
+                HBIMKCircle *circle = [pin objectForKey:@"circle"];
                 CLLocationDistance pinCircleRadius = circle.radius;
                 [aMapView removeOverlay:circle];
                 
-                circle = [MKCircle circleWithCenterCoordinate:pinAnnotation.coordinate radius:pinCircleRadius];
+                circle = [HBIMKCircle circleWithCenterCoordinate:pinAnnotation.coordinate radius:pinCircleRadius];
                 [pin setObject:circle forKey:@"circle"];
                 [aMapView addOverlay:circle];
             }
@@ -282,35 +282,35 @@
     }
     else {
         // find old circle view and remove it
-        MKPointAnnotation *pinAnnotation = annotationView.annotation;
+        HBIMKPointAnnotation *pinAnnotation = annotationView.annotation;
         for (NSMutableDictionary *pin in coreLocationPins)
         {
             if ([[pin objectForKey:@"pin"] isEqual: pinAnnotation])
             {
                 // found the pin.
-                MKCircle *circle = [pin objectForKey:@"circle"];
+                HBIMKCircle *circle = [pin objectForKey:@"circle"];
                 [aMapView removeOverlay:circle];
             }
         }
     }
 
     
-    //MKPointAnnotation *annotation = annotationView.annotation;
+    //HBIMKPointAnnotation *annotation = annotationView.annotation;
     //NSLog(@"annotation = %@", annotation);
     
 }
 
 // MacMapKit additions
-- (void)mapView:(MKMapView *)aMapView userDidClickAndHoldAtCoordinate:(CLLocationCoordinate2D)coordinate;
+- (void)mapView:(HBIMKMapView *)aMapView userDidClickAndHoldAtCoordinate:(CLLocationCoordinate2D)coordinate;
 {
     //NSLog(@"mapView: %@ userDidClickAndHoldAtCoordinate: (%f, %f)", aMapView, coordinate.latitude, coordinate.longitude);
-    MKPointAnnotation *pin = [[[MKPointAnnotation alloc] init] autorelease];
+    HBIMKPointAnnotation *pin = [[[HBIMKPointAnnotation alloc] init] autorelease];
     pin.coordinate = coordinate;
     pin.title = @"Hi.";
     [mapView addAnnotation:pin];
 }
 
-- (NSArray *)mapView:(MKMapView *)mapView contextMenuItemsForAnnotationView:(MKAnnotationView *)view
+- (NSArray *)mapView:(HBIMKMapView *)mapView contextMenuItemsForAnnotationView:(HBIMKAnnotationView *)view
 {
     NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"Delete It" action:@selector(delete:) keyEquivalent:@""] autorelease];
     return [NSArray arrayWithObject:item];

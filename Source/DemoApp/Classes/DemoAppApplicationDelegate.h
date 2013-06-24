@@ -7,13 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <MapKit/MapKit.h>
+#import <HBIMapKit/HBIMapKit.h>
 
-@class MKMapView;
+@class HBIMKMapView;
 
-@interface DemoAppApplicationDelegate : NSObject <NSApplicationDelegate, MKMapViewDelegate, MKReverseGeocoderDelegate, MKGeocoderDelegate> {
+@interface DemoAppApplicationDelegate : NSObject <NSApplicationDelegate, HBIMKMapViewDelegate, HBIMKReverseGeocoderDelegate, HBIMKGeocoderDelegate> {
     NSWindow *window;
-    IBOutlet MKMapView *mapView;
+    IBOutlet HBIMKMapView *mapView;
     IBOutlet NSTextField *addressTextField;
     NSNumber *circleRadius;
     NSString *pinTitle;
